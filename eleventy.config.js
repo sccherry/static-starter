@@ -4,6 +4,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
 
   eleventyConfig.addPassthroughCopy('./public');
+  eleventyConfig.addPassthroughCopy('./src/sw.js');
 
   return {
     dataTemplateEngine: 'njk',
