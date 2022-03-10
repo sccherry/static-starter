@@ -31,40 +31,46 @@
     <link rel="manifest" href="{{ '/site.webmanifest' | url }}" />
     <meta name="theme-color" content="{{ site.color }}" />
 
-    <link rel="canonical" href="{{ site.author.url }}{{ page.url | url }}" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 
     <link
       rel="stylesheet"
       href="https://stevecherry.net/normcore/css/normcore.css"
     />
-    <link rel="stylesheet" href="{{ '/public/style.css' | url }}" />
+    <link rel="stylesheet" href="{{ '/public/style.css' | url }}" media="screen" />
 
+    <script
+      src="https://stevecherry.net/normcore/js/normcore.js"
+      defer
+    ></script>
     <script src="{{ '/public/script.js' | url }}" defer></script>
   </head>
   <body>
-    <header role="banner">
-      <a href="{{ '/' | url }}">{{ site.name }}</a>
-    </header>
+    <div>
+      <header role="banner">
+        <a href="{{ '/' | url }}">{{ site.name }}</a>
+      </header>
 
-    <nav role="navigation">
-      <ul role="list">
-        {% for page in collections.all | eleventyNavigation %}
-        <li>
-          <a href="{{ page.url | url }}"{% if page.url == page.url %} aria-current="page"{% endif %}>{{ page.title }}</a>
-        </li>
-        {% endfor %}
-      </ul>
-    </nav>
+      <nav role="navigation">
+        <ul role="list">
+          {% for page in collections.all | eleventyNavigation %}
+          <li>
+            <a href="{{ page.url | url }}"{% if page.url == page.url %} aria-current="page"{% endif %}>{{ page.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
 
-    <main role="main">
-      {% if title %}
-      <h1>{{ title }}</h1>
-      {% endif %} {{ content | safe }}
-    </main>
+      <main role="main">
+        <h1>{{ title or site.name }}</h1>
 
-    <footer role="contentinfo">
-      <p>{{ site.description }}</p>
-    </footer>
+        {{ content | safe }}
+      </main>
+
+      <footer role="contentinfo">
+        <p>{{ site.description }}</p>
+      </footer>
+    </div>
 
     <script defer>
       if ('serviceWorker' in navigator) {
