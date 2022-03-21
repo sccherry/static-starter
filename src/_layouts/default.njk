@@ -53,10 +53,10 @@
 
       <nav role="navigation">
         <ul role="list">
-          {% for page in collections.all | eleventyNavigation %}
-          <li>
-            <a href="{{ page.url | url }}"{% if page.url == page.url %} aria-current="page"{% endif %}>{{ page.title }}</a>
-          </li>
+          {% for entry in collections.all | eleventyNavigation %}
+            <li>
+              <a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+            </li>
           {% endfor %}
         </ul>
       </nav>
